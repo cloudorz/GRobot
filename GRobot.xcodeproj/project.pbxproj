@@ -12,6 +12,8 @@
 		61DEA1471E63B37F003ACDE2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 61DEA1451E63B37F003ACDE2 /* Main.storyboard */; };
 		61DEA1491E63B37F003ACDE2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 61DEA1481E63B37F003ACDE2 /* Assets.xcassets */; };
 		61DEA14C1E63B37F003ACDE2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 61DEA14A1E63B37F003ACDE2 /* LaunchScreen.storyboard */; };
+		61DEA1541E63B3C5003ACDE2 /* GRobot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61DEA1531E63B3C5003ACDE2 /* GRobot.swift */; };
+		61DEA1561E63B447003ACDE2 /* GridOffice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61DEA1551E63B447003ACDE2 /* GridOffice.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +24,8 @@
 		61DEA1481E63B37F003ACDE2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		61DEA14B1E63B37F003ACDE2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		61DEA14D1E63B37F003ACDE2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		61DEA1531E63B3C5003ACDE2 /* GRobot.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GRobot.swift; sourceTree = "<group>"; };
+		61DEA1551E63B447003ACDE2 /* GridOffice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GridOffice.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +60,8 @@
 			children = (
 				61DEA1411E63B37F003ACDE2 /* AppDelegate.swift */,
 				61DEA1431E63B37F003ACDE2 /* ViewController.swift */,
+				61DEA1531E63B3C5003ACDE2 /* GRobot.swift */,
+				61DEA1551E63B447003ACDE2 /* GridOffice.swift */,
 				61DEA1451E63B37F003ACDE2 /* Main.storyboard */,
 				61DEA1481E63B37F003ACDE2 /* Assets.xcassets */,
 				61DEA14A1E63B37F003ACDE2 /* LaunchScreen.storyboard */,
@@ -137,6 +143,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				61DEA1541E63B3C5003ACDE2 /* GRobot.swift in Sources */,
+				61DEA1561E63B447003ACDE2 /* GridOffice.swift in Sources */,
 				61DEA1441E63B37F003ACDE2 /* ViewController.swift in Sources */,
 				61DEA1421E63B37F003ACDE2 /* AppDelegate.swift in Sources */,
 			);
