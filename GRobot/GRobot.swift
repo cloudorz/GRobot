@@ -22,12 +22,12 @@ struct GRobot
     case randomMove
 
     static var randomAction: Action {
-      return Action(rawValue: Int(arc4random_uniform(7))) ?? .none
+      return Action(rawValue: random(7)) ?? .none
     }
 
     static var randomMoveAction: Action {
       let moves: [Action] = [.up, .down, .left, .right]
-      return moves[Int(arc4random_uniform(UInt32(moves.count)))]
+      return moves[random(moves.count)]
     }
 
   }
@@ -41,10 +41,15 @@ struct GRobot
     }
   }
 
+  init(actions: [Action])
+  {
+    self.actions = actions
+  }
+
   private func robotEnvToActionIndex(_ env: GridArea.RobotEnv) -> Int
   {
     return env.reduce(0) { (total, pair) in
-      return total + pair.type.rawValue * Int(powf(3, Float(pair.direction.rawValue)))
+      return total + pair.type.rawValue * powInt(3, pair.direction.rawValue)
     }
   }
 
@@ -54,6 +59,33 @@ struct GRobot
     return actions[index]
   }
 
-  // TODO: 交配
-  // TODO: 突变
+  func mate(_ other: GRobot) -> [GRobot]
+  {
+    let matingIndex = random(actions.count)
+    let (headA, tailA) = (actions[0..<matingIndex], actions[matingIndex..<actions.count])
+    let (headB, tailB) = (other.actions[0..<matingIndex], other.actions[matingIndex..<other.actions.count])
+
+    let childAlice = GRobot(actions: Array(headA) + Array(tailB))
+    let childBob = GRobot(actions: Array(headB) + Array(tailA))
+
+    return [childAlice, childBob]
+  }
+
+  mutating func mutate()
+  {
+    func change(times: Int)
+    {
+      for _ in 0..<times
+      {
+        let mutatingIndex = random(actions.count)
+        actions[mutatingIndex] = Action.randomAction
+      }
+    }
+
+    if random(100) < 5
+    {
+      change(times: 2)
+    }
+  }
+
 }
