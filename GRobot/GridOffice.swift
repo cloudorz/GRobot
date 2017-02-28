@@ -29,16 +29,16 @@ final class GridArea
         return Position(i: i, j: j)
 
       case .left:
-        return Position(i: i - 1, j: j)
+        return Position(i: i, j: j - 1)
 
       case .right:
-        return Position(i: i + 1, j: j)
-
-      case .down:
         return Position(i: i, j: j + 1)
 
+      case .down:
+        return Position(i: i + 1, j: j)
+
       case .up:
-        return Position(i: i, j: j - 1)
+        return Position(i: i - 1, j: j)
       }
     }
 
@@ -78,7 +78,7 @@ final class GridArea
     {
       for j in 0..<grids[i].count
       {
-        if i == 0 || i == 11 || j == 0 || i == 11
+        if i == 0 || i == 11 || j == 0 || j == 11
         {
           grids[i][j] = .wall
         }
