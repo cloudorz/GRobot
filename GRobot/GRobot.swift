@@ -71,14 +71,15 @@ struct GRobot
     return [childAlice, childBob]
   }
 
-  mutating func mutate()
+  func mutate() -> GRobot
   {
+    var oldActions = actions
     func change(times: Int)
     {
       for _ in 0..<times
       {
-        let mutatingIndex = random(actions.count)
-        actions[mutatingIndex] = Action.randomAction
+        let mutatingIndex = random(oldActions.count)
+        oldActions[mutatingIndex] = Action.randomAction
       }
     }
 
@@ -86,6 +87,8 @@ struct GRobot
     {
       change(times: 2)
     }
+
+    return GRobot(actions: oldActions)
   }
 
 }

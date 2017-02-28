@@ -15,6 +15,7 @@
 		61DEA1541E63B3C5003ACDE2 /* GRobot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61DEA1531E63B3C5003ACDE2 /* GRobot.swift */; };
 		61DEA1561E63B447003ACDE2 /* GridOffice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61DEA1551E63B447003ACDE2 /* GridOffice.swift */; };
 		61DEA1581E63B952003ACDE2 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61DEA1571E63B952003ACDE2 /* Helpers.swift */; };
+		61DEA15A1E64640D003ACDE2 /* RobotManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61DEA1591E64640D003ACDE2 /* RobotManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		61DEA1531E63B3C5003ACDE2 /* GRobot.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GRobot.swift; sourceTree = "<group>"; };
 		61DEA1551E63B447003ACDE2 /* GridOffice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GridOffice.swift; sourceTree = "<group>"; };
 		61DEA1571E63B952003ACDE2 /* Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
+		61DEA1591E64640D003ACDE2 /* RobotManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RobotManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,6 +67,7 @@
 				61DEA1531E63B3C5003ACDE2 /* GRobot.swift */,
 				61DEA1571E63B952003ACDE2 /* Helpers.swift */,
 				61DEA1551E63B447003ACDE2 /* GridOffice.swift */,
+				61DEA1591E64640D003ACDE2 /* RobotManager.swift */,
 				61DEA1451E63B37F003ACDE2 /* Main.storyboard */,
 				61DEA1481E63B37F003ACDE2 /* Assets.xcassets */,
 				61DEA14A1E63B37F003ACDE2 /* LaunchScreen.storyboard */,
@@ -148,6 +151,7 @@
 			files = (
 				61DEA1541E63B3C5003ACDE2 /* GRobot.swift in Sources */,
 				61DEA1561E63B447003ACDE2 /* GridOffice.swift in Sources */,
+				61DEA15A1E64640D003ACDE2 /* RobotManager.swift in Sources */,
 				61DEA1441E63B37F003ACDE2 /* ViewController.swift in Sources */,
 				61DEA1581E63B952003ACDE2 /* Helpers.swift in Sources */,
 				61DEA1421E63B37F003ACDE2 /* AppDelegate.swift in Sources */,

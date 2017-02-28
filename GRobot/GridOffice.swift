@@ -143,7 +143,7 @@ final class GridArea
   }
 
 
-  func run(bot: GRobot) -> Score
+  func run(_ bot: GRobot) -> Score
   {
     robotPos = Position(i: 1, j: 1)
 
