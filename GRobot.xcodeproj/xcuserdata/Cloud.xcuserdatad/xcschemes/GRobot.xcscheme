@@ -14,8 +14,8 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "61DEA13D1E63B37E003ACDE2"
-               BuildableName = "GRobot.app"
+               BlueprintIdentifier = "61DEA16D1E65BC08003ACDE2"
+               BuildableName = "GRobot"
                BlueprintName = "GRobot"
                ReferencedContainer = "container:GRobot.xcodeproj">
             </BuildableReference>
@@ -32,8 +32,8 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "61DEA13D1E63B37E003ACDE2"
-            BuildableName = "GRobot.app"
+            BlueprintIdentifier = "61DEA16D1E65BC08003ACDE2"
+            BuildableName = "GRobot"
             BlueprintName = "GRobot"
             ReferencedContainer = "container:GRobot.xcodeproj">
          </BuildableReference>
@@ -55,8 +55,8 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "61DEA13D1E63B37E003ACDE2"
-            BuildableName = "GRobot.app"
+            BlueprintIdentifier = "61DEA16D1E65BC08003ACDE2"
+            BuildableName = "GRobot"
             BlueprintName = "GRobot"
             ReferencedContainer = "container:GRobot.xcodeproj">
          </BuildableReference>
@@ -74,8 +74,8 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "61DEA13D1E63B37E003ACDE2"
-            BuildableName = "GRobot.app"
+            BlueprintIdentifier = "61DEA16D1E65BC08003ACDE2"
+            BuildableName = "GRobot"
             BlueprintName = "GRobot"
             ReferencedContainer = "container:GRobot.xcodeproj">
          </BuildableReference>

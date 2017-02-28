@@ -9,10 +9,25 @@
 			<key>orderHint</key>
 			<integer>0</integer>
 		</dict>
+		<key>GRobotCLI.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
 		<key>61DEA13D1E63B37E003ACDE2</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>61DEA15E1E65B962003ACDE2</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>61DEA16D1E65BC08003ACDE2</key>
 		<dict>
 			<key>primary</key>
 			<true/>

@@ -73,24 +73,10 @@ final class GridArea
 
   init()
   {
-    var grids: [[GridType]] = Array<[GridType]>(repeating: Array<GridType>(repeating: .empty, count: GridArea.AreaSize + 2), count: GridArea.AreaSize + 2)
-    for i in 0..<grids.count
-    {
-      for j in 0..<grids[i].count
-      {
-        if i == 0 || i == 11 || j == 0 || j == 11
-        {
-          grids[i][j] = .wall
-        }
-        else
-        {
-          grids[i][j] = arc4random_uniform(100) < 50 ? .can : .empty
-        }
-      }
-    }
+    self.grids = []
+    self.robotPos = Position(i: 0, j: 0)
 
-    self.grids = grids
-    self.robotPos = Position(i: 1, j: 1)
+    resetNewArea()
   }
 
   func getGrid(_ pos: Position) -> GridType
@@ -142,11 +128,36 @@ final class GridArea
     }
   }
 
+  func resetNewArea()
+  {
+    var grids: [[GridType]] = Array<[GridType]>(repeating: Array<GridType>(repeating: .empty, count: GridArea.AreaSize + 2), count: GridArea.AreaSize + 2)
+    for i in 0..<grids.count
+    {
+      for j in 0..<grids[i].count
+      {
+        if i == 0 || i == 11 || j == 0 || j == 11
+        {
+          grids[i][j] = .wall
+        }
+        else
+        {
+          grids[i][j] = random(100) < 50 ? .can : .empty
+        }
+      }
+    }
+
+    self.grids = grids
+    self.robotPos = Position(i: 1, j: 1)
+  }
+
+  func runWithReset(_ bot: GRobot) -> Score
+  {
+    resetNewArea()
+    return run(bot)
+  }
 
   func run(_ bot: GRobot) -> Score
   {
-    robotPos = Position(i: 1, j: 1)
-
     func doNext(_ action: GRobot.Action) -> Score
     {
       switch action
@@ -178,7 +189,6 @@ final class GridArea
       return total + doNext(bot.action(robotEnv(robotPos)))
     }
   }
-
 
 }
 

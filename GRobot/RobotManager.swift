@@ -33,6 +33,8 @@ final class RobotManager
       print("The genration: \(generation) is on working.")
       computeFitness()
       print("The results: \(avgScores)")
+      print("The best robot: \(theBestRobot)")
+      print("The avg score: \(avgScore)")
       print("Evoluation is coming...")
       nextGenerationGroup()
       print("The genration: \(generation) be born.")
@@ -41,17 +43,21 @@ final class RobotManager
 
   var theBestRobot: (GRobot, Float) {
     return zip(robots, avgScores).max { (bot1, bot2) -> Bool in
-      return bot1.1 > bot2.1
+      return bot1.1 < bot2.1
     } ?? (robots[0], avgScores[0])
+  }
+
+  var avgScore: Float {
+    return avgScores.reduce(0, +) / Float(avgScores.count)
   }
 
   // fitness via index map to robots
   private func computeFitness()
   {
+    let area = GridArea()
     let allRobotsScore: [[GridArea.Score]] = robots.map { bot in
       return (0..<MaxGridAreaCount).map { _ in
-        let area = GridArea()
-        return area.run(bot)
+        return area.runWithReset(bot)
       }
     }
     avgScores = allRobotsScore.map { scores in
@@ -61,10 +67,11 @@ final class RobotManager
 
   private func nextGenerationGroup()
   {
-    let sortedPairs = zip(0..<MaxGroupCount, avgScores).sorted { (r1, r2) -> Bool in
+    let amendScores = avgScores.map({ $0 + 1000 })
+    let sortedPairs = zip(0..<MaxGroupCount, amendScores).sorted { (r1, r2) -> Bool in
       return r1.1 > r2.1
     }
-    let sum = Int(ceil(avgScores.reduce(0, +)))
+    let sum = Int(ceil(amendScores.reduce(0, +)))
 
     func randomIndex() -> Int
     {

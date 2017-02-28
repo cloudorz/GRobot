@@ -9,7 +9,7 @@
 import Foundation
 
 
-struct GRobot
+struct GRobot: CustomStringConvertible
 {
   enum Action: Int
   {
@@ -85,10 +85,14 @@ struct GRobot
 
     if random(100) < 5
     {
-      change(times: 2)
+      change(times: random(5))
     }
 
     return GRobot(actions: oldActions)
+  }
+
+  var description: String {
+    return actions.map({ String($0.rawValue) }).joined(separator: "")
   }
 
 }
