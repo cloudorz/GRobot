@@ -86,6 +86,10 @@ final class RobotManager
       }
     }
     queue.waitUntilAllOperationsAreFinished()
+
+    avgScores = allRobotsScore.map { scores in
+      return Float(scores.reduce(0, +)) / Float(MaxGroupCount)
+    }
   }
 
   private func nextGenerationGroup()
