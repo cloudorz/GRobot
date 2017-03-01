@@ -60,9 +60,32 @@ final class RobotManager
         return area.runWithReset(bot)
       }
     }
+
     avgScores = allRobotsScore.map { scores in
       return Float(scores.reduce(0, +)) / Float(MaxGroupCount)
     }
+  }
+
+  private func asyncComputeFitness()
+  {
+    let queue = OperationQueue()
+    queue.maxConcurrentOperationCount = 8
+    queue.name = "G-Robot"
+
+    var allRobotsScore: [[GridArea.Score]] = Array<[GridArea.Score]>(repeating: [], count: MaxGroupCount)
+    for (index, bot) in robots.enumerated()
+    {
+      queue.addOperation {
+        let area = GridArea()
+        let scores = (0..<MaxGridAreaCount).map { _ in
+          return area.runWithReset(bot)
+        }
+        OperationQueue.main.addOperation {
+          allRobotsScore[index] = scores
+        }
+      }
+    }
+    queue.waitUntilAllOperationsAreFinished()
   }
 
   private func nextGenerationGroup()
