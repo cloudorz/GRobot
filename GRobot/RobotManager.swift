@@ -26,15 +26,26 @@ final class RobotManager
     }
   }
 
-  func run()
+  func run(async: Bool = true)
   {
     for _ in 0..<MaxGeneration
     {
       print("The genration: \(generation) is on working.")
-      computeFitness()
-      print("The results: \(avgScores)")
+      print(Date().timeIntervalSinceReferenceDate)
+      if async
+      {
+        asyncComputeFitness()
+      }
+      else
+      {
+        computeFitness()
+      }
+      print(Date().timeIntervalSinceReferenceDate)
+//      print("The results: \(avgScores)")
       print("The best robot: \(theBestRobot)")
+      print("The worst robot: \(theWorstRobot)")
       print("The avg score: \(avgScore)")
+      print("==========================")
       print("Evoluation is coming...")
       nextGenerationGroup()
       print("The genration: \(generation) be born.")
@@ -45,6 +56,12 @@ final class RobotManager
     return zip(robots, avgScores).max { (bot1, bot2) -> Bool in
       return bot1.1 < bot2.1
     } ?? (robots[0], avgScores[0])
+  }
+
+  var theWorstRobot: (GRobot, Float) {
+    return zip(robots, avgScores).max { (bot1, bot2) -> Bool in
+      return bot1.1 > bot2.1
+      } ?? (robots[0], avgScores[0])
   }
 
   var avgScore: Float {
@@ -69,10 +86,10 @@ final class RobotManager
   private func asyncComputeFitness()
   {
     let queue = OperationQueue()
-    queue.maxConcurrentOperationCount = 8
+    queue.maxConcurrentOperationCount = 4
     queue.name = "G-Robot"
 
-    var allRobotsScore: [[GridArea.Score]] = Array<[GridArea.Score]>(repeating: [], count: MaxGroupCount)
+    var avgScores = Array<Float>(repeating: 0, count: MaxGroupCount)
     for (index, bot) in robots.enumerated()
     {
       queue.addOperation {
@@ -80,16 +97,12 @@ final class RobotManager
         let scores = (0..<MaxGridAreaCount).map { _ in
           return area.runWithReset(bot)
         }
-        OperationQueue.main.addOperation {
-          allRobotsScore[index] = scores
-        }
+        avgScores[index] = Float(scores.reduce(0, +)) / Float(scores.count)
       }
     }
     queue.waitUntilAllOperationsAreFinished()
 
-    avgScores = allRobotsScore.map { scores in
-      return Float(scores.reduce(0, +)) / Float(MaxGroupCount)
-    }
+    self.avgScores = avgScores
   }
 
   private func nextGenerationGroup()
