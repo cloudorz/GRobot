@@ -11,7 +11,7 @@ import Foundation
 
 final class GridArea
 {
-  typealias RobotEnv = Set<GridStatus>
+  typealias RobotEnv = [GridStatus]
   typealias Score = Int
   static let MaxActionSteps = 200
   static let AreaSize = 10
@@ -96,7 +96,7 @@ final class GridArea
       return GridStatus(direction: direction, type: type)
     }
 
-    return RobotEnv(statuses)
+    return statuses
   }
 
   func moveTo(_ direction: Direction) -> Score

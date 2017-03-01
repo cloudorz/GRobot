@@ -48,9 +48,13 @@ struct GRobot: CustomStringConvertible
 
   private func robotEnvToActionIndex(_ env: GridArea.RobotEnv) -> Int
   {
-    return env.reduce(0) { (total, pair) in
-      return total + pair.type.rawValue * powInt(3, pair.direction.rawValue)
+    var total: Int = 0
+    for status in env
+    {
+      total += status.type.rawValue * powInt(3, status.direction.rawValue)
     }
+
+    return total
   }
 
   func action(_ env: GridArea.RobotEnv) -> Action
