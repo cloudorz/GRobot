@@ -141,7 +141,7 @@ final class GridArea
         }
         else
         {
-          grids[i][j] = random(100) < 50 ? .can : .empty
+          grids[i][j] = drand48() <= 0.5 ? .can : .empty
         }
       }
     }
@@ -190,16 +190,4 @@ final class GridArea
     }
   }
 
-}
-
-extension GridArea.GridStatus: Hashable
-{
-  var hashValue: Int {
-    return type.rawValue.hashValue
-  }
-}
-
-func ==(lhs: GridArea.GridStatus, rhs: GridArea.GridStatus) -> Bool
-{
-  return lhs.direction == rhs.direction
 }

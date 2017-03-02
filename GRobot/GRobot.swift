@@ -87,7 +87,7 @@ struct GRobot: CustomStringConvertible
       }
     }
 
-    if random(100) < 5
+    if drand48() < 0.05
     {
       change(times: random(5))
     }
