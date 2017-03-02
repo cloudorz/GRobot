@@ -32,7 +32,7 @@ struct GRobot: CustomStringConvertible
 
   }
 
-  private var actions: [Action]
+  private let actions: [Action]
 
   init()
   {
