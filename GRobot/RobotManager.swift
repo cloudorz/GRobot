@@ -10,7 +10,7 @@ import Foundation
 
 
 private let MaxGroupCount = 200
-private let MaxGridAreaCount = 200
+private let MaxGridAreaCount = 100
 private let MaxGeneration = 1000
 
 final class RobotManager
