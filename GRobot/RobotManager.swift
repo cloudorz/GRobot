@@ -107,20 +107,21 @@ final class RobotManager
 
   private func nextGenerationGroup()
   {
-    let amendScores = avgScores.map({ $0 + 1000 })
-    let sortedPairs = zip(0..<MaxGroupCount, amendScores).sorted { (r1, r2) -> Bool in
-      return r1.1 > r2.1
-    }
-    let sum = Int(ceil(amendScores.reduce(0, +)))
+    let amendScores = avgScores.map({ $0 + 1100 })
+    var sortedPairs = Array(zip(0..<MaxGroupCount, amendScores))
+    let sum = sortedPairs.reduce(0, { $0 + $1.1 })
+    let percentPairs = sortedPairs.map({ (index, score) in
+      return (index, score / sum)
+    })
 
     func randomIndex() -> Int
     {
-      let num = random(sum)
+      let num = Float(drand48())
       var preScoreSum: Float = 0
-      for (index, score) in sortedPairs
+      for (index, score) in percentPairs
       {
         preScoreSum += score
-        if preScoreSum >= Float(num)
+        if preScoreSum >= num
         {
           return index
         }
