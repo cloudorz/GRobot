@@ -65,14 +65,21 @@ struct GRobot: CustomStringConvertible
 
   func mate(_ other: GRobot) -> [GRobot]
   {
-    let matingIndex = random(actions.count)
-    let (headA, tailA) = (actions[0..<matingIndex], actions[matingIndex..<actions.count])
-    let (headB, tailB) = (other.actions[0..<matingIndex], other.actions[matingIndex..<other.actions.count])
+    if drand48() < 0.75
+    {
+      let matingIndex = random(actions.count)
+      let (headA, tailA) = (actions[0..<matingIndex], actions[matingIndex..<actions.count])
+      let (headB, tailB) = (other.actions[0..<matingIndex], other.actions[matingIndex..<other.actions.count])
 
-    let childAlice = GRobot(actions: Array(headA) + Array(tailB))
-    let childBob = GRobot(actions: Array(headB) + Array(tailA))
+      let childAlice = GRobot(actions: Array(headA) + Array(tailB))
+      let childBob = GRobot(actions: Array(headB) + Array(tailA))
 
-    return [childAlice, childBob]
+      return [childAlice, childBob]
+    }
+    else
+    {
+      return [self, other]
+    }
   }
 
   func mutate() -> GRobot
@@ -87,7 +94,7 @@ struct GRobot: CustomStringConvertible
       }
     }
 
-    if drand48() < 0.05
+    if drand48() < 0.1
     {
       change(times: random(5))
     }
