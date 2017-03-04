@@ -107,34 +107,53 @@ final class RobotManager
 
   private func nextGenerationGroup()
   {
-    let amendScores = avgScores.map({ $0 + 1100 })
-    var sortedPairs = Array(zip(0..<MaxGroupCount, amendScores))
-    let sum = sortedPairs.reduce(0, { $0 + $1.1 })
-    let percentPairs = sortedPairs.map({ (index, score) in
-      return (index, score / sum)
-    })
+//    let amendScores = avgScores.map({ $0 + 1100 })
+//    var sortedPairs = Array(zip(0..<MaxGroupCount, amendScores))
+//    let sum = sortedPairs.reduce(0, { $0 + $1.1 })
+//    let percentPairs = sortedPairs.map({ (index, score) in
+//      return (index, score / sum)
+//    })
+//
+//    func randomIndex() -> Int
+//    {
+//      let num = Float(drand48())
+//      var preScoreSum: Float = 0
+//      for (index, score) in percentPairs
+//      {
+//        preScoreSum += score
+//        if preScoreSum >= num
+//        {
+//          return index
+//        }
+//      }
+//
+//      return MaxGroupCount - 1
+//    }
 
+    let _avgScores = avgScores
     func randomIndex() -> Int
     {
-      let num = Float(drand48())
-      var preScoreSum: Float = 0
-      for (index, score) in percentPairs
-      {
-        preScoreSum += score
-        if preScoreSum >= num
+      if let (index, _) = (0..<3).map({ _ -> (Int, Float) in
+        let index = random(_avgScores.count)
+        let score = _avgScores[index]
+
+        return (index, score)
+      }).max(by: { (i1, i2) -> Bool in
+        return i1.1 < i2.1
+      })
         {
           return index
-        }
       }
 
-      return MaxGroupCount - 1
+      return 0
     }
 
     var newGroupRobots: [GRobot] = []
+    let oldRobots = robots
     while newGroupRobots.count < MaxGroupCount
     {
-      let robotA = robots[randomIndex()]
-      let robotB = robots[randomIndex()]
+      let robotA = oldRobots[randomIndex()]
+      let robotB = oldRobots[randomIndex()]
       newGroupRobots.append(contentsOf: robotA.mate(robotB))
     }
 
