@@ -77,6 +77,7 @@ final class GridArea
     self.robotPos = Position(i: 0, j: 0)
 
     resetNewArea()
+    debugPrint("grids: \(grids)")
   }
 
   func getGrid(_ pos: Position) -> GridType
@@ -105,10 +106,12 @@ final class GridArea
     let newPosStatus = getGrid(newPos)
     if newPosStatus == .wall
     {
+      debugPrint("pos: \(newPos), sunk with wall, get -5 score.")
       return -5
     }
     else
     {
+      debugPrint("pos: \(newPos), move to \(direction)")
       robotPos = newPos
       return 0
     }
@@ -119,11 +122,13 @@ final class GridArea
     let status = getGrid(robotPos)
     if status == .can
     {
+      debugPrint("pos: \(robotPos), pick up one can, get 10 score")
       resetGrid(robotPos, type: .empty)
       return 10
     }
     else
     {
+      debugPrint("pos: \(robotPos), try to pick up one can, get -1 score")
       return -1
     }
   }
@@ -141,7 +146,7 @@ final class GridArea
         }
         else
         {
-          grids[i][j] = drand48() <= 0.5 ? .can : .empty
+          grids[i][j] = drand48() < 0.5 ? .can : .empty
         }
       }
     }
@@ -156,34 +161,36 @@ final class GridArea
     return run(bot)
   }
 
+  func doNext(_ action: GRobot.Action) -> Score
+  {
+    switch action
+    {
+    case .up:
+      return moveTo(.up)
+
+    case .down:
+      return moveTo(.down)
+
+    case .left:
+      return moveTo(.left)
+
+    case .right:
+      return moveTo(.right)
+
+    case .pickUp:
+      return pickUp()
+
+    case .none:
+      return 0
+
+    case .randomMove:
+      return doNext(GRobot.Action.randomMoveAction)
+    }
+  }
+
   func run(_ bot: GRobot) -> Score
   {
-    func doNext(_ action: GRobot.Action) -> Score
-    {
-      switch action
-      {
-      case .up:
-        return moveTo(.up)
 
-      case .down:
-        return moveTo(.down)
-
-      case .left:
-        return moveTo(.left)
-
-      case .right:
-        return moveTo(.right)
-
-      case .pickUp:
-        return pickUp()
-
-      case .none:
-        return 0
-
-      case .randomMove:
-        return doNext(GRobot.Action.randomMoveAction)
-      }
-    }
 
     return (0..<GridArea.MaxActionSteps).reduce(0) { (total, _) in
       return total + doNext(bot.action(robotEnv(robotPos)))
